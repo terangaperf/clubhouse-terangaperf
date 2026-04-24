@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-// ─── ASSETS ───────────────────────────────────────────────────────────────────
 const LOGO_SRC = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAGQAYMDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD5/ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKciNI6oilmY4AAySabW/4Iigm8caIl1LHFB9sjZ3kYKqgNnkn6UAJ/whPij/oXtT/8BX/wo/4QnxT/ANC9qf8A4Cv/AIV9qWerabqMjR2WoWly6jLLDOrkD1IBqe6u7aygM93cRQQr1klcKo/E0AfDV94b1vTY0kvtJvbdJH2IZYGXc3oMjrVy38DeK7td0Hh3U5B6i1f/AAr6Q8calp+v+L/BGlWN7b3Y/tM3UqwSq+FjXPOD7mvTJJEhiaWRwiIpZmY4AA6k0AfEN74K8UadCZrzw/qUEY6u9swA/SsEjBwa++re4gvbaO4tpkmglUMkkbBlYHuCOtfLvx88N2Wh+Mre7sYVhTUIDLJGgwokBwSB78GgDyeiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD339mqxzJr+oEdBFCD+ZP9K6j9oW9Fv8AD2K2z81zeIPwUE/4VH+ztY/Z/AV1dkc3N6xB9lUD+ea5/wDaUvh5eg6eDzmWcj8lH9aAOP8AgFZfafiZFOVyLa2lk+mRt/8AZq+ifiDe/wBnfD7XrnOCtlIo+rDb/WvGv2a7Ldq+uX5HEcEcIP8AvMT/AOy16N8bZpV+G1zaQKzzX1xDbRovVmLZwPyoAs/BtXX4U6HvzkpIRn08xsV5J+0hcB/FmkwA/wCrsixHoS5/wr37wrpH9g+FNL0s/etbZI2/3sfN+ua+XPjdqq6n8TtQWNspaqluPqo5/UmgDzuiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiigDJwOtAH2L8HrH7B8LdFXGDLG0x/wCBMTXjH7RF8bjx7a2meLayX82JP+FfRnhmyGneFtKswMeTaRJj3Civk/4w3xvvilrLZyIpFhH/AAFQP8aAPXv2cbHyfCGp3pGDcXmwH1CKP/ijXsU1vDOYzNDHIY3DoXUHaw6Eeh561wHwQsvsfws0wkYNw0kx/FyB+gFcD8fvFeraX4j02w0zU7q0QWpklWCUpuLMcZx7CgD1bx3480vwTok1xczxteshFtahsvI+OOOw9TXxneXc1/ez3dw5eaeRpHY92JyabcXU93M01zNJNK3V5GLMfxNRUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFaPh+zOoeItNswM+fdRx49iwzWdXafCay+3fE/QoyMqk/mn6KCf6UAfZKhY4wo4VRj8BXwz4pvTqPizV7wnPnXkrA+244/SvtjW7sWGgahdscCG2kk/JSa+GbOFr7U4ITy08yp+LNj+tAH2r4F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1ofGOzvdT8KWOm2drNcG61KBJBEhbauSSTjtXjXin4m2/wDwuO38V6OWubO1RI1VgUMibcOOenU16pN+0B4OTTRcRG9kuDj/AEbydrA98npQB13jy6/sn4c63MnBjsXRPqRtH86f4Ztk8N/D3Ton+VbPT1d/YhNzfrmvNvHXxa8Ia/4Z/s20v5WM9zB5wMDDbGJAz/oKs+M/jL4TvfBeq2OlX8sl5PbtDEnkso+bjqfbNAGR+z/fXmreIPEl/dXM0u4KQHkLAFnJ4B+lYf7R84fxfpcIP+rscke5c/4VF8E/HXh3wbZ6uNaunhluZI/L2xFsqoOenua5n4u+KdO8W+NTf6VM0totukasyleRnPB+tAF74EWX2v4n2khGVt4JZfoduB/OvT/2jb3yfBmnWYPNxe7j7hVP9SK8x+C/irQvCPiG/v8AW7hoVe28qErGWySwJ6ewq98bPHuj+MpdJi0W4eeG2WRpC0ZXDNjHX2FAHktfb/hm2Oj+AdMgVTut9PT5QOchM/zr4mtfK+2Q+eSIfMXeQM4XPP6V9YRfG3wHFCka6nLhVCj/AEduwoA+X9T0nVxPcX11pl5FG8hdpJIGUDce5I96+ytKjGh+AbRPuiz01c+22PNeV/Eb4seFNf8ACh0zTr+WR57mHzR5LDEYcMx5+laPi34y+ELzwbqtlpl/K93NavFCnksuSRjqaANH4DQEfD+S9YYe9vppT784/pUvgwnUPi9431HqsHk2an6DJ/UVzvw7+Kngzw34D0vS7u/kjuoYz5yiBjhixJ5FZ/w5+J/hbRX8RXeq3skVzqWpyXCgQs2Y/wCHp9aAMr9pC983xNpFkGyIbRpCPQs3+CivE67j4seKLHxb46uNR02RpLMRRxRMylc4HPB9ya4egAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//Z";
 
 const SOCK_IMAGES = {
@@ -13,7 +12,6 @@ const SOCK_IMAGES = {
   "bleu_ciel": "data:image/jpeg;base64,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",
 };
 
-// ─── DONNÉES ─────────────────────────────────────────────────────────────────
 const COLORIS = [
   { id: "noir",      label: "Noir",       hex: "#0a0a0a" },
   { id: "blanc",     label: "Blanc",      hex: "#f5f5f0" },
@@ -24,21 +22,14 @@ const COLORIS = [
   { id: "bleu_ciel", label: "Bleu Ciel",  hex: "#4FC3F7" },
 ];
 
-// Codes clubs — NE PAS PARTAGER AVEC LES CLUBS
 const CLUBS = {
   "LYON001":        { nom: "FC Lyon Centre",    ville: "Lyon",        contact: "Marc Dupont" },
   "RENNES002":      { nom: "AS Rennes Nord",    ville: "Rennes",      contact: "Julie Martin" },
   "CAEN003":        { nom: "USO Caen",          ville: "Caen",        contact: "Pierre Leroy" },
-  "MONTPELLIER004": { nom: "Montpellier ES",    ville: "Montpellier", contact: "Responsable Équipements" },
+  "MONTPELLIER004": { nom: "Montpellier ES",    ville: "Montpellier", contact: "Responsable Equipements" },
 };
 
 const ADMIN_CODE = "TERANGA2026";
-
-const DEMO_COMMANDES = [
-  { id: "C001", club: "FC Lyon Centre",  joueur: "Thomas Bernard", paires: [{coloris:"noir"},{coloris:"noir"},{coloris:"vert"}],   total: 20, statut: "payé",       date: "22/04/2026", tel: "06 12 34 56 78", paiement: "CB" },
-  { id: "C002", club: "FC Lyon Centre",  joueur: "Alex Moreau",    paires: [{coloris:"rouge"},{coloris:"bleu"}],                   total: 20, statut: "payé",       date: "22/04/2026", tel: "06 98 76 54 32", paiement: "Espèces" },
-  { id: "C003", club: "AS Rennes Nord",  joueur: "Karim Diallo",   paires: [{coloris:"bleu_ciel"}],                                total: 10, statut: "en attente", date: "21/04/2026", tel: "07 11 22 33 44", paiement: "CB" },
-];
 
 function calcTotal(n) {
   return Math.floor(n / 3) * 20 + (n % 3) * 10;
@@ -48,10 +39,9 @@ function colorHex(id)   { return COLORIS.find(c => c.id === id)?.hex  ?? "#ccc";
 function resumePaires(paires) {
   const counts = {};
   paires.forEach(p => { counts[p.coloris] = (counts[p.coloris] || 0) + 1; });
-  return Object.entries(counts).map(([id, n]) => `${n}× ${colorLabel(id)}`).join(", ");
+  return Object.entries(counts).map(([id, n]) => `${n}x ${colorLabel(id)}`).join(", ");
 }
 
-// ─── LOGO ─────────────────────────────────────────────────────────────────────
 function LogoTP({ width = 180 }) {
   return <img src={LOGO_SRC} alt="TERANGA PERF" style={{ width, objectFit: "contain", display: "block" }} />;
 }
@@ -59,16 +49,15 @@ function LogoCompact({ width = 120, mono = false }) {
   return <img src={LOGO_SRC} alt="TERANGA PERF" style={{ width, objectFit: "contain", display: "block", filter: mono ? "none" : "invert(1)" }} />;
 }
 
-// ─── ATOMS ───────────────────────────────────────────────────────────────────
 function Btn({ label, onClick, variant = "primary", style: extra = {}, disabled = false }) {
   const base = { width: "100%", border: "none", borderRadius: 14, padding: "15px 20px", fontSize: 15, fontWeight: 700, cursor: disabled ? "not-allowed" : "pointer", fontFamily: "system-ui", opacity: disabled ? 0.4 : 1, letterSpacing: 0.3 };
   const v = {
-    primary:      { background: "#0a0a0a", color: "#fff" },
-    white:        { background: "#fff",    color: "#0a0a0a" },
-    ghost:        { background: "transparent", color: "#0a0a0a", border: "1.5px solid #0a0a0a" },
-    ghost_white:  { background: "transparent", color: "rgba(255,255,255,.45)", border: "1.5px solid rgba(255,255,255,.2)" },
-    green:        { background: "#1a7a3a", color: "#fff" },
-    outline:      { background: "transparent", color: "#0a0a0a", border: "1.5px solid #ddd" },
+    primary:  { background: "#0a0a0a", color: "#fff" },
+    white:    { background: "#fff",    color: "#0a0a0a" },
+    ghost:    { background: "transparent", color: "#0a0a0a", border: "1.5px solid #0a0a0a" },
+    ghost_white: { background: "transparent", color: "rgba(255,255,255,.45)", border: "1.5px solid rgba(255,255,255,.2)" },
+    green:    { background: "#1a7a3a", color: "#fff" },
+    outline:  { background: "transparent", color: "#0a0a0a", border: "1.5px solid #ddd" },
   };
   return <button style={{ ...base, ...v[variant], ...extra }} onClick={disabled ? undefined : onClick}>{label}</button>;
 }
@@ -84,13 +73,12 @@ function Field({ label, value, onChange, placeholder, type = "text" }) {
 }
 
 function Badge({ statut }) {
-  const ok = statut === "payé";
+  const ok = statut === "paye";
   return <span style={{ padding: "4px 10px", borderRadius: 20, fontSize: 11, fontWeight: 700, fontFamily: "system-ui", background: ok ? "#e8f5e9" : "#fff8e1", color: ok ? "#1a7a3a" : "#c0392b", flexShrink: 0 }}>
-    {ok ? "✓ Payé" : "⏳ Attente"}
+    {ok ? "Paye" : "En attente"}
   </span>;
 }
 
-// ─── COLORIS PICKER avec photo ────────────────────────────────────────────────
 function ColorisPickerLine({ value, onChange }) {
   return (
     <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -104,7 +92,7 @@ function ColorisPickerLine({ value, onChange }) {
         }}>
           {SOCK_IMAGES[c.id]
             ? <img src={SOCK_IMAGES[c.id]} alt={c.label} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            : <div style={{ width: "100%", height: "100%", background: c.hex, border: c.hex === "#f5f5f0" ? "1px solid #ddd" : "none" }} />
+            : <div style={{ width: "100%", height: "100%", background: c.hex }} />
           }
         </button>
       ))}
@@ -112,7 +100,6 @@ function ColorisPickerLine({ value, onChange }) {
   );
 }
 
-// ─── ÉCRAN : ACCUEIL ──────────────────────────────────────────────────────────
 function Accueil({ onClub, onAdmin }) {
   return (
     <div style={{ flex: 1, background: "#0a0a0a", display: "flex", flexDirection: "column", position: "relative", overflow: "hidden" }}>
@@ -122,16 +109,16 @@ function Accueil({ onClub, onAdmin }) {
         <div style={{ marginBottom: 28, textAlign: "center" }}>
           <span style={{ display: "inline-block", background: "rgba(255,255,255,.05)", border: "1px solid rgba(255,255,255,.1)", borderRadius: 20, padding: "7px 20px", fontSize: 11, color: "rgba(255,255,255,.4)", fontFamily: "system-ui", letterSpacing: 5, textTransform: "uppercase" }}>Club House</span>
           <p style={{ color: "rgba(255,255,255,.3)", fontSize: 13, lineHeight: 1.7, fontFamily: "system-ui", margin: "14px auto 0", maxWidth: 260, textAlign: "center" }}>
-            Commandez vos chaussettes anti-dérapantes depuis votre club. Livraison chaque semaine.
+            Commandez vos chaussettes anti-deerapantes depuis votre club. Livraison chaque semaine.
           </p>
         </div>
         <div style={{ display: "flex", gap: 8, marginBottom: 32, flexWrap: "wrap", justifyContent: "center" }}>
-          {["🎁 Offre 2+1 — 20€ les 3", "Taille unique", "7 coloris"].map(t => (
+          {["Offre 2+1 - 20 les 3", "Taille unique", "7 coloris"].map(t => (
             <span key={t} style={{ background: "rgba(255,255,255,.04)", border: "1px solid rgba(255,255,255,.08)", borderRadius: 20, padding: "5px 12px", fontSize: 11, color: "rgba(255,255,255,.35)", fontFamily: "system-ui" }}>{t}</span>
           ))}
         </div>
         <div style={{ width: "100%", maxWidth: 320, display: "flex", flexDirection: "column", gap: 10 }}>
-          <Btn label="Accéder à mon club →" onClick={onClub} variant="white" />
+          <Btn label="Acceder a mon club" onClick={onClub} variant="white" />
           <Btn label="Admin TERANGA PERF" onClick={onAdmin} variant="ghost_white" style={{ fontSize: 12 }} />
         </div>
       </div>
@@ -139,7 +126,6 @@ function Accueil({ onClub, onAdmin }) {
   );
 }
 
-// ─── CONNEXION CLUB ───────────────────────────────────────────────────────────
 function ConnexionClub({ onSuccess, onCreer, onBack }) {
   const [code, setCode] = useState("");
   const [err, setErr] = useState("");
@@ -154,9 +140,9 @@ function ConnexionClub({ onSuccess, onCreer, onBack }) {
       <div style={S.body}>
         <h2 style={S.h2}>Connexion</h2>
         <p style={S.sub}>Entrez le code fourni par votre ambassadeur TERANGA PERF.</p>
-        <Field label="Code club" value={code} onChange={v => setCode(v.toUpperCase())} placeholder="Code d'accès club" />
+        <Field label="Code club" value={code} onChange={v => setCode(v.toUpperCase())} placeholder="Code d'acces club" />
         {err && <p style={{ color: "#c0392b", fontSize: 13, fontFamily: "system-ui" }}>{err}</p>}
-        <Btn label="Se connecter →" onClick={() => {
+        <Btn label="Se connecter" onClick={() => {
           const club = CLUBS[code.trim()];
           if (club) { setErr(""); onSuccess(code.trim(), club); }
           else setErr("Code introuvable. Contactez votre ambassadeur TERANGA PERF.");
@@ -166,13 +152,12 @@ function ConnexionClub({ onSuccess, onCreer, onBack }) {
           <span style={{ fontSize: 12, color: "#ccc", fontFamily: "system-ui" }}>ou</span>
           <div style={{ flex: 1, height: 1, background: "#eee" }} />
         </div>
-        <Btn label="Créer un compte club" onClick={onCreer} variant="ghost" />
+        <Btn label="Creer un compte club" onClick={onCreer} variant="ghost" />
       </div>
     </div>
   );
 }
 
-// ─── CRÉER UN COMPTE ──────────────────────────────────────────────────────────
 function CreerCompte({ onBack }) {
   const [f, setF] = useState({ nom: "", ville: "", contact: "", email: "", tel: "" });
   const [done, setDone] = useState(false);
@@ -180,9 +165,9 @@ function CreerCompte({ onBack }) {
   if (done) return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "40px 28px", gap: 14, textAlign: "center", background: "#fff" }}>
       <span style={{ fontSize: 56 }}>✅</span>
-      <h2 style={S.h2}>Demande envoyée !</h2>
-      <p style={S.sub}>TERANGA PERF activera votre compte sous 24h. Vous recevrez votre code club.</p>
-      <Btn label="Retour à l'accueil" onClick={onBack} />
+      <h2 style={S.h2}>Demande envoyee !</h2>
+      <p style={S.sub}>TERANGA PERF activera votre compte sous 24h.</p>
+      <Btn label="Retour a l'accueil" onClick={onBack} />
     </div>
   );
   return (
@@ -198,19 +183,18 @@ function CreerCompte({ onBack }) {
         <p style={S.sub}>Activation sous 24h par TERANGA PERF.</p>
         <Field label="Nom du club" value={f.nom} onChange={set("nom")} placeholder="Montpellier ES" />
         <Field label="Ville" value={f.ville} onChange={set("ville")} placeholder="Montpellier" />
-        <Field label="Responsable équipements" value={f.contact} onChange={set("contact")} placeholder="Prénom Nom" />
+        <Field label="Responsable equipements" value={f.contact} onChange={set("contact")} placeholder="Prenom Nom" />
         <Field label="Email" value={f.email} onChange={set("email")} placeholder="contact@club.fr" type="email" />
-        <Field label="Téléphone" value={f.tel} onChange={set("tel")} placeholder="06 XX XX XX XX" type="tel" />
-        <Btn label="Envoyer la demande →" onClick={() => setDone(true)} style={{ marginTop: 4 }} />
+        <Field label="Telephone" value={f.tel} onChange={set("tel")} placeholder="06 XX XX XX XX" type="tel" />
+        <Btn label="Envoyer la demande" onClick={() => setDone(true)} style={{ marginTop: 4 }} />
       </div>
     </div>
   );
 }
 
-// ─── DASHBOARD CLUB ───────────────────────────────────────────────────────────
-function DashboardClub({ club, codeClub, commandes, onCommande, onLogout }) {
+function DashboardClub({ club, commandes, onCommande, onLogout }) {
   const miennes = commandes.filter(c => c.club === club.nom);
-  const ca = miennes.filter(c => c.statut === "payé").reduce((s, c) => s + c.total, 0);
+  const ca = miennes.filter(c => c.statut === "paye").reduce((s, c) => s + c.total, 0);
   const commission = (ca * 0.1).toFixed(2);
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", background: "#fff" }}>
@@ -221,13 +205,13 @@ function DashboardClub({ club, codeClub, commandes, onCommande, onLogout }) {
           <div style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>{club.nom}</div>
           <div style={{ fontSize: 10, color: "rgba(255,255,255,.35)", fontFamily: "system-ui" }}>{club.ville}</div>
         </div>
-        <button style={{ marginLeft: 8, padding: "7px 12px", borderRadius: 10, background: "rgba(255,255,255,.07)", border: "1px solid rgba(255,255,255,.12)", color: "rgba(255,255,255,.45)", fontSize: 11, fontFamily: "system-ui", cursor: "pointer" }} onClick={onLogout}>Déco</button>
+        <button style={{ marginLeft: 8, padding: "7px 12px", borderRadius: 10, background: "rgba(255,255,255,.07)", border: "1px solid rgba(255,255,255,.12)", color: "rgba(255,255,255,.45)", fontSize: 11, fontFamily: "system-ui", cursor: "pointer" }} onClick={onLogout}>Deco</button>
       </div>
       <div style={{ flex: 1, overflowY: "auto", padding: "18px 20px 40px" }}>
         <div style={{ display: "flex", gap: 10, marginBottom: 18 }}>
           {[
             { val: miennes.length, label: "Commandes", color: "#0a0a0a", bg: "#f4f4f4" },
-            { val: `${ca}€`, label: "CA généré", color: "#1a7a3a", bg: "#e8f5e9" },
+            { val: `${ca}€`, label: "CA genere", color: "#1a7a3a", bg: "#e8f5e9" },
             { val: `${commission}€`, label: "Votre 10%", color: "#1A3A6B", bg: "#e8eaf6" },
           ].map((s, i) => (
             <div key={i} style={{ flex: 1, background: s.bg, borderRadius: 14, padding: "14px 8px", textAlign: "center" }}>
@@ -248,7 +232,7 @@ function DashboardClub({ club, codeClub, commandes, onCommande, onLogout }) {
           Commandes {miennes.length > 0 && <span style={{ color: "#1a7a3a" }}>({miennes.length})</span>}
         </div>
         {miennes.length === 0
-          ? <div style={{ textAlign: "center", padding: "30px 20px", color: "#ccc" }}>
+          ? <div style={{ textAlign: "center", padding: "40px 20px", color: "#ccc" }}>
               <div style={{ fontSize: 36, marginBottom: 10 }}>🏷️</div>
               <p style={{ fontFamily: "system-ui", fontSize: 13, margin: 0 }}>Aucune commande pour l'instant.</p>
             </div>
@@ -264,18 +248,15 @@ function CarteCommande({ c }) {
   const swatches = (c.paires || []).filter(p => { if (seen[p.coloris]) return false; seen[p.coloris] = true; return true; });
   const nb = c.paires?.length ?? 0;
   return (
-    <div style={{ background: "#f7f7f7", borderRadius: 14, padding: "13px 15px", marginBottom: 10, border: "1.5px solid #eeeeee" }}>
+    <div style={{ background: "#f7f7f7", borderRadius: 14, padding: "13px 15px", marginBottom: 10, border: "1.5px solid #eee" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
         <span style={{ fontWeight: 700, fontSize: 14, color: "#0a0a0a" }}>{c.joueur}</span>
         <Badge statut={c.statut} />
       </div>
       <div style={{ display: "flex", gap: 5, alignItems: "center", marginBottom: 5 }}>
         {swatches.map(p => (
-          <div key={p.coloris} title={colorLabel(p.coloris)} style={{ width: 18, height: 18, borderRadius: 4, overflow: "hidden", flexShrink: 0 }}>
-            {SOCK_IMAGES[p.coloris]
-              ? <img src={SOCK_IMAGES[p.coloris]} alt={colorLabel(p.coloris)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              : <div style={{ width: "100%", height: "100%", background: colorHex(p.coloris) }} />
-            }
+          <div key={p.coloris} style={{ width: 18, height: 18, borderRadius: 4, overflow: "hidden", flexShrink: 0 }}>
+            {SOCK_IMAGES[p.coloris] ? <img src={SOCK_IMAGES[p.coloris]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : <div style={{ width: "100%", height: "100%", background: colorHex(p.coloris) }} />}
           </div>
         ))}
         <span style={{ fontSize: 11, color: "#888", fontFamily: "system-ui" }}>{c.paires ? resumePaires(c.paires) : ""}</span>
@@ -289,21 +270,20 @@ function CarteCommande({ c }) {
   );
 }
 
-// ─── TUNNEL COMMANDE ──────────────────────────────────────────────────────────
 function TunnelCommande({ club, onFin, onAnnuler }) {
   const [etape, setEtape] = useState(1);
   const [prenom, setPrenom] = useState("");
-  const [nom, setNom]       = useState("");
-  const [tel, setTel]       = useState("");
-  const [nb, setNb]         = useState(1);
-  const [choix, setChoix]   = useState(["noir"]);
-  const [modePaiement, setModePaiement] = useState(null); // null | "especes" | "cb"
-  const [encaissementConfirme, setEncaissementConfirme] = useState(false);
-  const [pay, setPay]       = useState(null);
-  const [err, setErr]       = useState("");
+  const [nom, setNom] = useState("");
+  const [tel, setTel] = useState("");
+  const [nb, setNb] = useState(1);
+  const [choix, setChoix] = useState(["noir"]);
+  const [mode, setMode] = useState(null);
+  const [confirme, setConfirme] = useState(false);
+  const [pay, setPay] = useState(null);
+  const [err, setErr] = useState("");
 
-  const total  = calcTotal(nb);
-  const offre  = nb >= 3;
+  const total = calcTotal(nb);
+  const offre = nb >= 3;
 
   const updateNb = n => {
     const next = Math.max(1, n);
@@ -316,14 +296,7 @@ function TunnelCommande({ club, onFin, onAnnuler }) {
     setErr(""); setEtape(e => e + 1);
   };
 
-  const confirmerEspeces = () => {
-    if (!encaissementConfirme) { setErr("Veuillez confirmer l'encaissement."); return; }
-    setPay("ok");
-  };
-
-  const payerCB = () => { setPay("sumup"); setTimeout(() => setPay("ok"), 2000); };
-
-  if (pay === "sumup") return (
+  if (pay === "loading") return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, background: "#fff" }}>
       <div style={S.spinner} />
       <p style={{ fontFamily: "system-ui", color: "#999", fontSize: 14 }}>Connexion SumUp…</p>
@@ -332,7 +305,7 @@ function TunnelCommande({ club, onFin, onAnnuler }) {
 
   if (pay === "ok") {
     const paires = choix.map(coloris => ({ coloris }));
-    const modeLabel = modePaiement === "especes" ? "Espèces" : "CB SumUp";
+    const modeLabel = mode === "especes" ? "Especes" : "CB SumUp";
     return (
       <div style={{ flex: 1, overflowY: "auto", background: "#fff" }}>
         <div style={{ background: "#0a0a0a", padding: "52px 28px 24px", display: "flex", justifyContent: "center" }}>
@@ -340,19 +313,16 @@ function TunnelCommande({ club, onFin, onAnnuler }) {
         </div>
         <div style={{ padding: "24px 28px 40px", display: "flex", flexDirection: "column", alignItems: "center", gap: 14 }}>
           <div style={{ fontSize: 56 }}>✅</div>
-          <h2 style={{ ...S.h2, textAlign: "center" }}>Commande confirmée !</h2>
-          <p style={{ ...S.sub, textAlign: "center" }}>Merci <strong>{prenom}</strong> ! Votre commande est enregistrée.</p>
+          <h2 style={{ ...S.h2, textAlign: "center" }}>Commande confirmee !</h2>
+          <p style={{ ...S.sub, textAlign: "center" }}>Merci <strong>{prenom}</strong> !</p>
           <div style={{ background: "#f7f7f7", borderRadius: 16, padding: "16px", width: "100%", border: "1.5px solid #eee" }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: "#0a0a0a", marginBottom: 10, fontFamily: "system-ui" }}>{prenom} {nom} · {nb} paire{nb > 1 ? "s" : ""}</div>
             {paires.map((p, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, fontSize: 13, fontFamily: "system-ui", padding: "3px 0" }}>
                 <div style={{ width: 24, height: 24, borderRadius: 6, overflow: "hidden", flexShrink: 0 }}>
-                  {SOCK_IMAGES[p.coloris]
-                    ? <img src={SOCK_IMAGES[p.coloris]} alt={colorLabel(p.coloris)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                    : <div style={{ width: "100%", height: "100%", background: colorHex(p.coloris) }} />
-                  }
+                  {SOCK_IMAGES[p.coloris] ? <img src={SOCK_IMAGES[p.coloris]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : <div style={{ width: "100%", height: "100%", background: colorHex(p.coloris) }} />}
                 </div>
-                <span style={{ color: "#555" }}>Paire {i + 1} — {colorLabel(p.coloris)}{offre && (i + 1) % 3 === 0 ? " 🎁 Offerte" : ""}</span>
+                <span style={{ color: "#555" }}>Paire {i + 1} — {colorLabel(p.coloris)}{offre && (i + 1) % 3 === 0 ? " (Offerte)" : ""}</span>
               </div>
             ))}
             <div style={{ display: "flex", justifyContent: "space-between", borderTop: "1px solid #eee", paddingTop: 10, marginTop: 10 }}>
@@ -367,7 +337,7 @@ function TunnelCommande({ club, onFin, onAnnuler }) {
               <div style={{ fontSize: 11, color: "#888", fontFamily: "system-ui", marginTop: 2 }}>Jeudi ou vendredi cette semaine</div>
             </div>
           </div>
-          <Btn label="Retour au dashboard →" onClick={() => onFin({ prenom, nom, tel, paires, total, paiement: modeLabel })} />
+          <Btn label="Retour au dashboard" onClick={() => onFin({ prenom, nom, tel, paires, total, paiement: modeLabel })} />
         </div>
       </div>
     );
@@ -376,33 +346,31 @@ function TunnelCommande({ club, onFin, onAnnuler }) {
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", background: "#fff" }}>
       <div style={{ padding: "52px 22px 14px", display: "flex", alignItems: "center", gap: 12, borderBottom: "1px solid #f0f0f0", flexShrink: 0 }}>
-        <button style={S.backBtn} onClick={etape === 1 ? onAnnuler : () => { setEtape(e => e - 1); setModePaiement(null); setEncaissementConfirme(false); }}>←</button>
+        <button style={S.backBtn} onClick={etape === 1 ? onAnnuler : () => { setEtape(e => e - 1); setMode(null); setConfirme(false); }}>←</button>
         <div style={{ flex: 1, display: "flex", gap: 6 }}>
           {[1, 2, 3].map(n => <div key={n} style={{ height: 3, flex: 1, borderRadius: 2, background: etape >= n ? "#0a0a0a" : "#eee", transition: "background .3s" }} />)}
         </div>
-        <span style={{ fontSize: 11, color: "#aaa", fontFamily: "system-ui" }}>Étape {etape}/3</span>
+        <span style={{ fontSize: 11, color: "#aaa", fontFamily: "system-ui" }}>Etape {etape}/3</span>
       </div>
 
       <div style={S.body}>
-        {/* Étape 1 : Joueur */}
         {etape === 1 && <>
           <h2 style={S.h2}>Le joueur</h2>
           <p style={S.sub}>{club.nom} · {club.ville}</p>
-          <Field label="Prénom" value={prenom} onChange={setPrenom} placeholder="Mohamed" />
+          <Field label="Prenom" value={prenom} onChange={setPrenom} placeholder="Mohamed" />
           <Field label="Nom" value={nom} onChange={setNom} placeholder="Dupont" />
-          <Field label="Téléphone" value={tel} onChange={setTel} placeholder="06 XX XX XX XX" type="tel" />
+          <Field label="Telephone" value={tel} onChange={setTel} placeholder="06 XX XX XX XX" type="tel" />
           {err && <p style={{ color: "#c0392b", fontSize: 13, fontFamily: "system-ui" }}>{err}</p>}
-          <Btn label="Suivant →" onClick={next} style={{ marginTop: 4 }} />
+          <Btn label="Suivant" onClick={next} style={{ marginTop: 4 }} />
         </>}
 
-        {/* Étape 2 : Paires + coloris avec photos */}
         {etape === 2 && <>
           <h2 style={S.h2}>Paires & coloris</h2>
-          <p style={S.sub}>Choisissez la quantité et le coloris de chaque paire.</p>
+          <p style={S.sub}>Choisissez la quantite et le coloris de chaque paire.</p>
           <div style={{ background: "#0a0a0a", borderRadius: 14, padding: "12px 16px", display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
             <div style={{ fontFamily: "system-ui", color: "rgba(255,255,255,.6)", fontSize: 12 }}>
               <div>1 paire = 10€</div>
-              <div style={{ color: "#fff", fontWeight: 700, marginTop: 2 }}>🎁 2+1 = 20€ les 3</div>
+              <div style={{ color: "#fff", fontWeight: 700, marginTop: 2 }}>Offre 2+1 = 20€ les 3</div>
             </div>
             <div style={{ textAlign: "right" }}>
               <div style={{ fontSize: 28, fontWeight: 700, color: "#fff" }}>{total}€</div>
@@ -417,11 +385,7 @@ function TunnelCommande({ club, onFin, onAnnuler }) {
               <button style={{ width: 34, height: 34, borderRadius: 10, background: "#e0e0e0", border: "none", fontSize: 20, cursor: "pointer" }} onClick={() => updateNb(nb + 1)}>+</button>
             </div>
           </div>
-          {offre && (
-            <div style={{ textAlign: "center", marginBottom: 6 }}>
-              <span style={{ background: "#e8f5e9", color: "#1a7a3a", border: "1.5px solid #1a7a3a", borderRadius: 20, padding: "5px 14px", fontSize: 12, fontWeight: 700, fontFamily: "system-ui" }}>🎁 Offre 2+1 activée !</span>
-            </div>
-          )}
+          {offre && <div style={{ textAlign: "center", marginBottom: 6 }}><span style={{ background: "#e8f5e9", color: "#1a7a3a", border: "1.5px solid #1a7a3a", borderRadius: 20, padding: "5px 14px", fontSize: 12, fontWeight: 700, fontFamily: "system-ui" }}>Offre 2+1 activee !</span></div>}
           <div style={{ display: "flex", flexDirection: "column", gap: 10, margin: "4px 0 14px" }}>
             {choix.map((c, i) => {
               const estOfferte = offre && (i + 1) % 3 === 0;
@@ -430,127 +394,80 @@ function TunnelCommande({ club, onFin, onAnnuler }) {
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
                     <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                       <div style={{ width: 28, height: 28, borderRadius: 6, overflow: "hidden", flexShrink: 0 }}>
-                        {SOCK_IMAGES[c]
-                          ? <img src={SOCK_IMAGES[c]} alt={colorLabel(c)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                          : <div style={{ width: "100%", height: "100%", background: colorHex(c) }} />
-                        }
+                        {SOCK_IMAGES[c] ? <img src={SOCK_IMAGES[c]} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} /> : <div style={{ width: "100%", height: "100%", background: colorHex(c) }} />}
                       </div>
                       <span style={{ fontSize: 13, fontWeight: 700, color: "#0a0a0a", fontFamily: "system-ui" }}>Paire {i + 1}</span>
                     </div>
-                    <span style={{ fontSize: 12, color: estOfferte ? "#1a7a3a" : "#aaa", fontFamily: "system-ui", fontWeight: estOfferte ? 700 : 400 }}>
-                      {estOfferte ? "🎁 Offerte" : "10€"}
-                    </span>
+                    <span style={{ fontSize: 12, color: estOfferte ? "#1a7a3a" : "#aaa", fontFamily: "system-ui", fontWeight: estOfferte ? 700 : 400 }}>{estOfferte ? "Offerte" : "10€"}</span>
                   </div>
                   <ColorisPickerLine value={c} onChange={v => setAt(i, v)} />
-                  <p style={{ fontSize: 11, color: "#aaa", fontFamily: "system-ui", margin: "6px 0 0" }}>Sélectionné : <strong style={{ color: "#555" }}>{colorLabel(c)}</strong></p>
+                  <p style={{ fontSize: 11, color: "#aaa", fontFamily: "system-ui", margin: "6px 0 0" }}>Selectionne : <strong style={{ color: "#555" }}>{colorLabel(c)}</strong></p>
                 </div>
               );
             })}
           </div>
-          <Btn label="Suivant →" onClick={() => setEtape(3)} />
+          <Btn label="Suivant" onClick={() => setEtape(3)} />
         </>}
 
-        {/* Étape 3 : Paiement */}
         {etape === 3 && <>
           <h2 style={S.h2}>Paiement</h2>
-          <p style={S.sub}>Choisissez le mode de règlement du joueur.</p>
-
-          {/* Récap rapide */}
+          <p style={S.sub}>Mode de reglement du joueur.</p>
           <div style={{ background: "#f7f7f7", borderRadius: 14, padding: "12px 16px", marginBottom: 14, border: "1.5px solid #eee" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <span style={{ fontSize: 13, fontFamily: "system-ui", color: "#888" }}>{prenom} {nom} · {nb} paire{nb > 1 ? "s" : ""}{offre ? " · 2+1 🎁" : ""}</span>
+              <span style={{ fontSize: 13, fontFamily: "system-ui", color: "#888" }}>{prenom} {nom} · {nb} paire{nb > 1 ? "s" : ""}{offre ? " · 2+1" : ""}</span>
               <span style={{ fontSize: 22, fontWeight: 700, color: "#0a0a0a" }}>{total}€</span>
             </div>
           </div>
 
-          {/* Choix paiement */}
-          {!modePaiement && <>
+          {!mode && (
             <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 14 }}>
-              <button onClick={() => setModePaiement("especes")} style={{
-                background: "#fff", border: "2px solid #eee", borderRadius: 16, padding: "18px 20px",
-                display: "flex", alignItems: "center", gap: 16, cursor: "pointer", textAlign: "left"
-              }}>
+              <button onClick={() => setMode("especes")} style={{ background: "#fff", border: "2px solid #eee", borderRadius: 16, padding: "18px 20px", display: "flex", alignItems: "center", gap: 16, cursor: "pointer", textAlign: "left" }}>
                 <span style={{ fontSize: 28 }}>💵</span>
-                <div>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: "#0a0a0a", fontFamily: "system-ui" }}>Espèces</div>
-                  <div style={{ fontSize: 12, color: "#aaa", fontFamily: "system-ui", marginTop: 2 }}>Le joueur règle en cash</div>
-                </div>
+                <div><div style={{ fontSize: 15, fontWeight: 700, color: "#0a0a0a", fontFamily: "system-ui" }}>Especes</div><div style={{ fontSize: 12, color: "#aaa", fontFamily: "system-ui", marginTop: 2 }}>Le joueur regle en cash</div></div>
               </button>
-              <button onClick={() => setModePaiement("cb")} style={{
-                background: "#fff", border: "2px solid #eee", borderRadius: 16, padding: "18px 20px",
-                display: "flex", alignItems: "center", gap: 16, cursor: "pointer", textAlign: "left"
-              }}>
+              <button onClick={() => setMode("cb")} style={{ background: "#fff", border: "2px solid #eee", borderRadius: 16, padding: "18px 20px", display: "flex", alignItems: "center", gap: 16, cursor: "pointer", textAlign: "left" }}>
                 <span style={{ fontSize: 28 }}>💳</span>
-                <div>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: "#0a0a0a", fontFamily: "system-ui" }}>Carte bancaire</div>
-                  <div style={{ fontSize: 12, color: "#aaa", fontFamily: "system-ui", marginTop: 2 }}>Paiement sécurisé via SumUp</div>
-                </div>
+                <div><div style={{ fontSize: 15, fontWeight: 700, color: "#0a0a0a", fontFamily: "system-ui" }}>Carte bancaire</div><div style={{ fontSize: 12, color: "#aaa", fontFamily: "system-ui", marginTop: 2 }}>Paiement securise via SumUp</div></div>
               </button>
             </div>
-          </>}
+          )}
 
-          {/* Mode espèces */}
-          {modePaiement === "especes" && <>
+          {mode === "especes" && <>
             <div style={{ background: "#f4f4f4", borderRadius: 16, padding: "18px", marginBottom: 14, textAlign: "center" }}>
               <div style={{ fontSize: 32, marginBottom: 8 }}>💵</div>
-              <div style={{ fontWeight: 700, fontSize: 18, color: "#0a0a0a", fontFamily: "system-ui" }}>Règlement en espèces</div>
+              <div style={{ fontWeight: 700, fontSize: 18, color: "#0a0a0a", fontFamily: "system-ui" }}>Reglement en especes</div>
               <div style={{ fontSize: 28, fontWeight: 700, color: "#0a0a0a", marginTop: 8 }}>{total}€</div>
-              <div style={{ fontSize: 12, color: "#aaa", fontFamily: "system-ui", marginTop: 4 }}>À encaisser auprès du joueur</div>
             </div>
-            {/* Case à cocher confirmation */}
-            <button onClick={() => setEncaissementConfirme(!encaissementConfirme)} style={{
-              background: encaissementConfirme ? "#e8f5e9" : "#f7f7f7",
-              border: encaissementConfirme ? "2px solid #1a7a3a" : "2px solid #eee",
-              borderRadius: 14, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12, cursor: "pointer", marginBottom: 14, width: "100%", textAlign: "left"
-            }}>
-              <div style={{
-                width: 22, height: 22, borderRadius: 6, border: encaissementConfirme ? "none" : "2px solid #ccc",
-                background: encaissementConfirme ? "#1a7a3a" : "transparent",
-                display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "all .15s"
-              }}>
-                {encaissementConfirme && <span style={{ color: "#fff", fontSize: 14, fontWeight: 700 }}>✓</span>}
+            <button onClick={() => setConfirme(!confirme)} style={{ background: confirme ? "#e8f5e9" : "#f7f7f7", border: confirme ? "2px solid #1a7a3a" : "2px solid #eee", borderRadius: 14, padding: "14px 16px", display: "flex", alignItems: "center", gap: 12, cursor: "pointer", marginBottom: 14, width: "100%", textAlign: "left" }}>
+              <div style={{ width: 22, height: 22, borderRadius: 6, border: confirme ? "none" : "2px solid #ccc", background: confirme ? "#1a7a3a" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "all .15s" }}>
+                {confirme && <span style={{ color: "#fff", fontSize: 14, fontWeight: 700 }}>✓</span>}
               </div>
-              <span style={{ fontSize: 13, fontFamily: "system-ui", color: "#0a0a0a", lineHeight: 1.4 }}>
-                Je confirme avoir réalisé l'encaissement de <strong>{total}€</strong> auprès du joueur
-              </span>
+              <span style={{ fontSize: 13, fontFamily: "system-ui", color: "#0a0a0a", lineHeight: 1.4 }}>Je confirme avoir encaisse <strong>{total}€</strong> aupres du joueur</span>
             </button>
             {err && <p style={{ color: "#c0392b", fontSize: 13, fontFamily: "system-ui" }}>{err}</p>}
-            <Btn label={`Valider la commande — ${total}€ →`} onClick={confirmerEspeces} variant="green" disabled={!encaissementConfirme} />
-            <Btn label="Changer de mode" onClick={() => { setModePaiement(null); setEncaissementConfirme(false); setErr(""); }} variant="outline" style={{ marginTop: 8, fontSize: 13 }} />
+            <Btn label={`Valider la commande — ${total}€`} onClick={() => { if (!confirme) { setErr("Confirmez l'encaissement."); return; } setPay("ok"); }} variant="green" disabled={!confirme} />
+            <Btn label="Changer de mode" onClick={() => { setMode(null); setConfirme(false); setErr(""); }} variant="outline" style={{ marginTop: 8, fontSize: 13 }} />
           </>}
 
-          {/* Mode CB SumUp */}
-          {modePaiement === "cb" && <>
+          {mode === "cb" && <>
             <div style={{ background: "#f4f4f4", borderRadius: 16, padding: "18px", display: "flex", flexDirection: "column", alignItems: "center", gap: 12, marginBottom: 14 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <span style={{ fontSize: 28 }}>💳</span>
-                <div>
-                  <span style={{ fontWeight: 700, fontSize: 16, fontFamily: "system-ui", color: "#0a0a0a" }}>SumUp</span>
-                  <div style={{ fontSize: 11, color: "#aaa", fontFamily: "system-ui" }}>Paiement sécurisé</div>
-                </div>
+                <div><span style={{ fontWeight: 700, fontSize: 16, fontFamily: "system-ui", color: "#0a0a0a" }}>SumUp</span><div style={{ fontSize: 11, color: "#aaa", fontFamily: "system-ui" }}>Paiement securise</div></div>
               </div>
               <div style={{ background: "#fff", borderRadius: 14, padding: "14px 18px", width: "100%", textAlign: "center" }}>
                 <div style={{ fontSize: 12, color: "#aaa", fontFamily: "system-ui", marginBottom: 4 }}>{prenom} {nom}</div>
                 <div style={{ fontSize: 32, fontWeight: 700, color: "#0a0a0a" }}>{total}€</div>
               </div>
-              {/* Case à cocher confirmation */}
-              <button onClick={() => setEncaissementConfirme(!encaissementConfirme)} style={{
-                background: encaissementConfirme ? "#e8f5e9" : "#fff",
-                border: encaissementConfirme ? "2px solid #1a7a3a" : "2px solid #eee",
-                borderRadius: 12, padding: "12px 14px", display: "flex", alignItems: "center", gap: 10, cursor: "pointer", width: "100%", textAlign: "left"
-              }}>
-                <div style={{
-                  width: 20, height: 20, borderRadius: 5, border: encaissementConfirme ? "none" : "2px solid #ccc",
-                  background: encaissementConfirme ? "#1a7a3a" : "transparent",
-                  display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0
-                }}>
-                  {encaissementConfirme && <span style={{ color: "#fff", fontSize: 13, fontWeight: 700 }}>✓</span>}
+              <button onClick={() => setConfirme(!confirme)} style={{ background: confirme ? "#e8f5e9" : "#fff", border: confirme ? "2px solid #1a7a3a" : "2px solid #eee", borderRadius: 12, padding: "12px 14px", display: "flex", alignItems: "center", gap: 10, cursor: "pointer", width: "100%", textAlign: "left" }}>
+                <div style={{ width: 20, height: 20, borderRadius: 5, border: confirme ? "none" : "2px solid #ccc", background: confirme ? "#1a7a3a" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  {confirme && <span style={{ color: "#fff", fontSize: 13, fontWeight: 700 }}>✓</span>}
                 </div>
-                <span style={{ fontSize: 12, fontFamily: "system-ui", color: "#555", lineHeight: 1.4 }}>Le règlement a été effectué par le joueur</span>
+                <span style={{ fontSize: 12, fontFamily: "system-ui", color: "#555", lineHeight: 1.4 }}>Le reglement a ete effectue par le joueur</span>
               </button>
             </div>
-            <Btn label={`Confirmer — ${total}€ →`} onClick={payerCB} variant="green" disabled={!encaissementConfirme} />
-            <Btn label="Changer de mode" onClick={() => { setModePaiement(null); setEncaissementConfirme(false); }} variant="outline" style={{ marginTop: 8, fontSize: 13 }} />
+            <Btn label={`Confirmer — ${total}€`} onClick={() => { setPay("loading"); setTimeout(() => setPay("ok"), 2000); }} variant="green" disabled={!confirme} />
+            <Btn label="Changer de mode" onClick={() => { setMode(null); setConfirme(false); }} variant="outline" style={{ marginTop: 8, fontSize: 13 }} />
           </>}
         </>}
       </div>
@@ -558,7 +475,6 @@ function TunnelCommande({ club, onFin, onAnnuler }) {
   );
 }
 
-// ─── CONNEXION ADMIN ──────────────────────────────────────────────────────────
 function ConnexionAdmin({ onSuccess, onBack }) {
   const [code, setCode] = useState("");
   const [err, setErr] = useState("");
@@ -572,20 +488,19 @@ function ConnexionAdmin({ onSuccess, onBack }) {
       </div>
       <div style={S.body}>
         <h2 style={S.h2}>Espace TERANGA PERF</h2>
-        <p style={S.sub}>Accès réservé — Mamadou GUEYE, Fondateur.</p>
-        <Field label="Code d'accès" value={code} onChange={setCode} placeholder="••••••••••" type="password" />
+        <p style={S.sub}>Acces reserve — Mamadou GUEYE, Fondateur.</p>
+        <Field label="Code d'acces" value={code} onChange={setCode} placeholder="••••••••••" type="password" />
         {err && <p style={{ color: "#c0392b", fontSize: 13, fontFamily: "system-ui" }}>{err}</p>}
-        <Btn label="Accéder →" onClick={() => code === ADMIN_CODE ? onSuccess() : setErr("Code incorrect.")} />
+        <Btn label="Acceder" onClick={() => code === ADMIN_CODE ? onSuccess() : setErr("Code incorrect.")} />
       </div>
     </div>
   );
 }
 
-// ─── ADMIN DASHBOARD ──────────────────────────────────────────────────────────
 function AdminTeranga({ commandes, onLogout }) {
   const [onglet, setOnglet] = useState("commandes");
   const [filtre, setFiltre] = useState("tous");
-  const ca = commandes.filter(c => c.statut === "payé").reduce((s, c) => s + c.total, 0);
+  const ca = commandes.filter(c => c.statut === "paye").reduce((s, c) => s + c.total, 0);
   const commissions = (ca * 0.1).toFixed(2);
   const net = (ca - parseFloat(commissions)).toFixed(2);
   const clubs = [...new Set(commandes.map(c => c.club))];
@@ -596,10 +511,10 @@ function AdminTeranga({ commandes, onLogout }) {
         <LogoCompact width={80} mono />
         <div style={{ flex: 1 }} />
         <span style={{ fontSize: 11, color: "rgba(255,255,255,.25)", fontFamily: "system-ui", textTransform: "uppercase", letterSpacing: 1 }}>Vue globale</span>
-        <button style={{ marginLeft: 8, padding: "7px 12px", borderRadius: 10, background: "rgba(255,255,255,.07)", border: "1px solid rgba(255,255,255,.1)", color: "rgba(255,255,255,.45)", fontSize: 11, fontFamily: "system-ui", cursor: "pointer" }} onClick={onLogout}>Déco</button>
+        <button style={{ marginLeft: 8, padding: "7px 12px", borderRadius: 10, background: "rgba(255,255,255,.07)", border: "1px solid rgba(255,255,255,.1)", color: "rgba(255,255,255,.45)", fontSize: 11, fontFamily: "system-ui", cursor: "pointer" }} onClick={onLogout}>Deco</button>
       </div>
       <div style={{ display: "flex", borderBottom: "1px solid #f0f0f0", flexShrink: 0 }}>
-        {[["commandes","📦 Commandes"],["clubs","🏟️ Clubs"],["stats","📊 Stats"]].map(([v,l]) => (
+        {[["commandes","Commandes"],["clubs","Clubs"],["stats","Stats"]].map(([v,l]) => (
           <button key={v} onClick={() => setOnglet(v)} style={{ flex: 1, padding: "12px 4px", background: "none", border: "none", borderBottom: onglet === v ? "2px solid #0a0a0a" : "2px solid transparent", fontSize: 12, fontWeight: 700, fontFamily: "system-ui", cursor: "pointer", color: onglet === v ? "#0a0a0a" : "#bbb" }}>{l}</button>
         ))}
       </div>
@@ -627,40 +542,52 @@ function AdminTeranga({ commandes, onLogout }) {
           </div>
         </>}
         {onglet === "commandes" && <>
-          <div style={{ display: "flex", gap: 7, marginBottom: 14 }}>
-            {[["tous","Tous"],["payé","✓ Payés"],["en attente","⏳ Attente"]].map(([v,l]) => (
-              <button key={v} onClick={() => setFiltre(v)} style={{ padding: "6px 12px", borderRadius: 20, border: "none", fontFamily: "system-ui", fontSize: 12, fontWeight: 600, cursor: "pointer", background: filtre === v ? "#0a0a0a" : "#f4f4f4", color: filtre === v ? "#fff" : "#666" }}>{l}</button>
-            ))}
-          </div>
-          {filtered.map(c => <CarteCommande key={c.id} c={c} />)}
+          {commandes.length === 0
+            ? <div style={{ textAlign: "center", padding: "40px 20px", color: "#ccc" }}>
+                <div style={{ fontSize: 36, marginBottom: 10 }}>📦</div>
+                <p style={{ fontFamily: "system-ui", fontSize: 13, margin: 0 }}>Aucune commande pour l'instant.</p>
+              </div>
+            : <>
+              <div style={{ display: "flex", gap: 7, marginBottom: 14 }}>
+                {[["tous","Tous"],["paye","Payes"],["attente","Attente"]].map(([v,l]) => (
+                  <button key={v} onClick={() => setFiltre(v)} style={{ padding: "6px 12px", borderRadius: 20, border: "none", fontFamily: "system-ui", fontSize: 12, fontWeight: 600, cursor: "pointer", background: filtre === v ? "#0a0a0a" : "#f4f4f4", color: filtre === v ? "#fff" : "#666" }}>{l}</button>
+                ))}
+              </div>
+              {filtered.map(c => <CarteCommande key={c.id} c={c} />)}
+            </>
+          }
         </>}
-        {onglet === "clubs" && clubs.map(nomClub => {
-          const cc = commandes.filter(c => c.club === nomClub);
-          const caC = cc.filter(c => c.statut === "payé").reduce((s, c) => s + c.total, 0);
-          return (
-            <div key={nomClub} style={{ background: "#f7f7f7", borderRadius: 14, padding: "14px 16px", marginBottom: 10, border: "1.5px solid #eee" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 5 }}>
-                <span style={{ fontWeight: 700, fontSize: 14, color: "#0a0a0a" }}>{nomClub}</span>
-                <span style={{ background: "#e8f5e9", color: "#1a7a3a", padding: "3px 10px", borderRadius: 20, fontSize: 11, fontWeight: 700, fontFamily: "system-ui" }}>Actif</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, fontFamily: "system-ui", color: "#666" }}>
-                <span>{cc.length} commandes</span>
-                <span style={{ fontWeight: 700 }}>{caC}€ · comm. {Math.round(caC * 0.1)}€</span>
-              </div>
+        {onglet === "clubs" && (clubs.length === 0
+          ? <div style={{ textAlign: "center", padding: "40px 20px", color: "#ccc" }}>
+              <div style={{ fontSize: 36, marginBottom: 10 }}>🏟️</div>
+              <p style={{ fontFamily: "system-ui", fontSize: 13, margin: 0 }}>Aucun club actif pour l'instant.</p>
             </div>
-          );
-        })}
+          : clubs.map(nomClub => {
+              const cc = commandes.filter(c => c.club === nomClub);
+              const caC = cc.filter(c => c.statut === "paye").reduce((s, c) => s + c.total, 0);
+              return (
+                <div key={nomClub} style={{ background: "#f7f7f7", borderRadius: 14, padding: "14px 16px", marginBottom: 10, border: "1.5px solid #eee" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 5 }}>
+                    <span style={{ fontWeight: 700, fontSize: 14, color: "#0a0a0a" }}>{nomClub}</span>
+                    <span style={{ background: "#e8f5e9", color: "#1a7a3a", padding: "3px 10px", borderRadius: 20, fontSize: 11, fontWeight: 700, fontFamily: "system-ui" }}>Actif</span>
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, fontFamily: "system-ui", color: "#666" }}>
+                    <span>{cc.length} commandes</span>
+                    <span style={{ fontWeight: 700 }}>{caC}€ · comm. {Math.round(caC * 0.1)}€</span>
+                  </div>
+                </div>
+              );
+            })
+        )}
       </div>
     </div>
   );
 }
 
-// ─── APP ──────────────────────────────────────────────────────────────────────
 export default function App() {
   const [ecran, setEcran] = useState("accueil");
-  const [club, setClub]   = useState(null);
-  const [code, setCode]   = useState("");
-  const [commandes, setCommandes] = useState(DEMO_COMMANDES);
+  const [club, setClub] = useState(null);
+  const [commandes, setCommandes] = useState([]);
 
   const ajouterCommande = data => {
     setCommandes(prev => [{
@@ -668,7 +595,7 @@ export default function App() {
       club: club.nom, ville: club.ville,
       joueur: `${data.prenom} ${data.nom}`,
       paires: data.paires, total: data.total,
-      statut: "payé", paiement: data.paiement,
+      statut: "paye", paiement: data.paiement,
       date: new Date().toLocaleDateString("fr-FR"),
       tel: data.tel,
     }, ...prev]);
@@ -684,9 +611,9 @@ export default function App() {
           <span>9:41</span><span>●●●</span>
         </div>
         {ecran === "accueil"    && <Accueil onClub={() => setEcran("conn_club")} onAdmin={() => setEcran("conn_admin")} />}
-        {ecran === "conn_club"  && <ConnexionClub onSuccess={(c, cl) => { setCode(c); setClub(cl); setEcran("dashboard"); }} onCreer={() => setEcran("creer")} onBack={() => setEcran("accueil")} />}
+        {ecran === "conn_club"  && <ConnexionClub onSuccess={(c, cl) => { setClub(cl); setEcran("dashboard"); }} onCreer={() => setEcran("creer")} onBack={() => setEcran("accueil")} />}
         {ecran === "creer"      && <CreerCompte onBack={() => setEcran("accueil")} />}
-        {ecran === "dashboard"  && <DashboardClub club={club} codeClub={code} commandes={commandes} onCommande={() => setEcran("commande")} onLogout={() => { setClub(null); setEcran("accueil"); }} />}
+        {ecran === "dashboard"  && <DashboardClub club={club} commandes={commandes} onCommande={() => setEcran("commande")} onLogout={() => { setClub(null); setEcran("accueil"); }} />}
         {ecran === "commande"   && <TunnelCommande club={club} onFin={ajouterCommande} onAnnuler={() => setEcran("dashboard")} />}
         {ecran === "conn_admin" && <ConnexionAdmin onSuccess={() => setEcran("admin")} onBack={() => setEcran("accueil")} />}
         {ecran === "admin"      && <AdminTeranga commandes={commandes} onLogout={() => setEcran("accueil")} />}
